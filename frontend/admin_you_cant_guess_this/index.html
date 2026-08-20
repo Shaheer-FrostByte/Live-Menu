@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Editing Page</title>
+    <link rel="stylesheet" href="edit.css" />
+</head>
+
+<body>
+    <aside id="aside">
+        <div class="sidebar-top">
+            <button id="sidebar_btn">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                    <rect y="4" width="24" height="2" />
+                    <rect y="11" width="24" height="2" />
+                    <rect y="18" width="24" height="2" />
+                </svg>
+                <span>Collapse</span>
+            </button>
+        </div>
+
+        <div class="sidebar-stats">
+            <div class="stat-cell">
+                <span class="stat-value" id="stat-categories">—</span>
+                <span class="stat-label">Categories</span>
+            </div>
+            <div class="stat-cell">
+                <span class="stat-value" id="stat-items">—</span>
+                <span class="stat-label">Items</span>
+            </div>
+        </div>
+
+        <!-- Category label + add button -->
+        <div class="sidebar-section-label">
+            <span>Categories</span>
+            <button id="add-category-btn" class="icon-btn" title="Add Category">
+                <svg width="14" height="14" viewBox="0 0 24 24">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" />
+                    <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+        <section id="category_list"></section>
+    </aside>
+
+    <div id="sidebar-backdrop"></div>
+
+    <header>
+        <button id="mobile_menu_btn">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+                <rect y="4" width="24" height="2" />
+                <rect y="11" width="24" height="2" />
+                <rect y="18" width="24" height="2" />
+            </svg>
+        </button>
+        <h1>Menu <span>Editing</span></h1>
+        <button id="logout" class="header-badge">Log Out</button>
+    </header>
+
+    <main>
+        <section>
+            <div class="content-header">
+                <h2 id="cat_name">Select a Category</h2>
+                <span class="item-count" id="item-count"></span>
+            </div>
+            <nav>
+                <h3>Item</h3>
+                <h3>Price</h3>
+                <h3>Available</h3>
+                <h3>
+                    <button id="add-item-btn" class="icon-btn icon-btn--accent" title="Add Item">
+                        <svg width="14" height="14" viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </h3>
+            </nav>
+            <div id="items_list" class="items_list"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Menu Editing Page &nbsp;·&nbsp; Admin Panel</p>
+    </footer>
+
+    <!-- Kebab dropdown menu (shared, repositioned by JS) -->
+    <div id="kebab-dropdown" class="kebab-dropdown hidden">
+        <button id="dropdown-edit" class="dropdown-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+            Edit
+        </button>
+        <button id="dropdown-delete" class="dropdown-item dropdown-item--danger">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                <path d="M10 11v6M14 11v6" />
+                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+            </svg>
+            Delete
+        </button>
+    </div>
+
+    <!-- Item Modal (add + edit) -->
+    <div id="item-modal" class="modal-backdrop hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="item-modal-title">Add Item</h3>
+                <button type="button" id="item-modal-close" class="modal-close">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                        <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="item-toast-container"></div>
+                <div class="form-group">
+                    <label for="item-form-name">Item Name</label>
+                    <input type="text" id="item-form-name" placeholder="e.g. Chicken Burger" />
+                    <span class="field-error" id="item-error-name"></span>
+                </div>
+                <div class="form-group">
+                    <label for="item-form-price">Price</label>
+                    <input type="text" id="item-form-price" placeholder="e.g. 500" />
+                    <span class="field-error" id="item-error-price"></span>
+                </div>
+                <div class="form-group form-group--inline">
+                    <label for="item-form-avail">Available</label>
+                    <input type="checkbox" id="item-form-avail" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="item-modal-cancel" class="btn-secondary">Cancel</button>
+                <button type="button" id="item-modal-save" class="btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Modal (add + edit) -->
+    <div id="cat-modal" class="modal-backdrop hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="cat-modal-title">Add Category</h3>
+                <button type="button" id="cat-modal-close" class="modal-close">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                        <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="cat-toast-container"></div>
+                <div class="form-group">
+                    <label for="cat-form-name">Category Name</label>
+                    <input type="text" id="cat-form-name" placeholder="e.g. Burgers" />
+                    <span class="field-error" id="cat-error-name"></span>
+                </div>
+                <div class="form-group form-group--inline">
+                    <label for="cat-form-avail">Available</label>
+                    <input type="checkbox" id="cat-form-avail" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cat-modal-cancel" class="btn-secondary">Cancel</button>
+                <button type="button" id="cat-modal-save" class="btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="edit.js"></script>
+</body>
+
+</html>
