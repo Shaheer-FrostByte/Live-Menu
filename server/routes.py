@@ -10,3 +10,4 @@ add_item = "/item/add"
 update_item = "/item/update"
 delete_item = "/item/delete"
 
+login = "/login"
