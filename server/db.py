@@ -1,6 +1,6 @@
 from supabase import create_client, Client
 from functools import lru_cache
-import config
+import config, schema
 
 # @lru_cache
 # def get_Supabase_client() -> Client:
@@ -32,16 +32,17 @@ def get_menu() -> dict:
 
 
 # CATEGORY
-def add_category(name: str, avail: bool) -> dict:
+def add_category(target: schema.CreateUpdateCategory) -> dict:
     success = True
     error = None
     res = None
 
     try:
-        res = supabase.table("categories").insert({"C_name": name, "C_avail":avail}).execute()
+        res = supabase.table("categories").insert(target.model_dump()).execute()
     except Exception as e:
         success = False
         error = str(e)
+        
 
     return {
         "success": success,
@@ -49,13 +50,13 @@ def add_category(name: str, avail: bool) -> dict:
         "data": res.data
     }
 
-def update_category(id: str, name: str, avail: bool) -> dict:
+def update_category(id: str, target: schema.CreateUpdateCategory) -> dict:
     success = True
     error = None
     res = None
 
     try:
-        res = supabase.table("categories").update({"C_name": name, "C_avail": avail}).eq("C_id", id).execute()
+        res = supabase.table("categories").update(target.model_dump()).eq("C_id", id).execute()
     except Exception as e:
         success = False
         error = str(e)
