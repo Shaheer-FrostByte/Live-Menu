@@ -84,3 +84,6 @@ class UpdateItem(BaseModel):
         else:
             return name
 
+class Login_Request(BaseModel):
+    email: str
+    password: str
