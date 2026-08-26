@@ -23,5 +23,5 @@ export default {
 
   // Backend API base URL (no trailing slash). Safe to hardcode —
   // this is a public client-side value, not a secret.
-  backendUrl: "live-menu-production-020a.up.railway.app",
+  backendUrl: "https://live-menu-production-020a.up.railway.app",
 };
