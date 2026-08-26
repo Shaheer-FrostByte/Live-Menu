@@ -9,8 +9,8 @@ import config, db, routes as r, schema as s
 app = FastAPI()
 
 origins = [
-    "http://localhost:5500",
-    "http://127.0.0.1:5500"
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
     # Another origin: hosted frontend url
 ]
 app.add_middleware(
@@ -68,7 +68,8 @@ def convert_posgres_errors(result: dict, empty_data_possible: bool) -> dict:
     elif empty_data_possible and (not result["data"]):
         raise HTTPException(status_code=404, detail="DATA NOT FOUND!!!")
     else:
-        return result["data"]
+        data = result["data"]
+        return data[0] if isinstance(data, list) and data else data
 
 
 @app.get(r.health_check)
