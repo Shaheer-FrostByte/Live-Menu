@@ -54,7 +54,7 @@ def login(login_creds: s.Login_Request, response: Response) -> dict:
 
     response.set_cookie(
         key="access_token", value=token,
-        httponly=True, secure=True, samesite="lax", max_age=1 * 3600,
+        httponly=True, secure=True, samesite="none", max_age=1 * 3600,
     )
 
     return {
