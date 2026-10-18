@@ -13,7 +13,7 @@ export default {
 
   // Logo: put the image file in /public and point to it here.
   // Leave null to show the restaurant's initials instead.
-  logoPath: "a.png", // e.g. "logo.png"
+  logoPath: "logo.png", // e.g. "logo.png"
 
   // ── About section (menu page) ───────────────────────────────────
   // Heading + paragraphs. Each string in the array is one paragraph.
@@ -29,12 +29,12 @@ export default {
   // /public (e.g. /public/gallery/zinger.jpg) and list them here as
   // "gallery/zinger.jpg". Leave image: "" to show a colored placeholder.
   gallery: [
-    { image: "", name: "Zinger Burger" },
-    { image: "", name: "Chicken Tikka Pizza" },
-    { image: "", name: "Chicken Biryani" },
-    { image: "", name: "Seekh Kabab" },
-    { image: "", name: "Loaded Fries" },
-    { image: "", name: "Brownie Sundae" },
+    { image: "gallery/zinger.jpg", name: "Zinger Burger" },
+    { image: "gallery/pizza.jpg", name: "Chicken Tikka Pizza" },
+    { image: "gallery/biryani.jpg", name: "Chicken Biryani" },
+    { image: "gallery/tikka.jpg", name: "Seekh Kabab" },
+    { image: "gallery/french_fries.jpg", name: "Loaded Fries" },
+    { image: "gallery/sundae.jpg", name: "Brownie Sundae" },
   ],
 
   // ── Contact section (menu page) ─────────────────────────────────
