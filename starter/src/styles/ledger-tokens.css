@@ -1,0 +1,16 @@
+/* Ledger theme tokens — shared by LoginPage, AdminPage, ItemsPanel, Modal.
+   Only variables here, no element rules, so importing this globally
+   can't leak styles into the (differently themed) MenuPage. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --ledger-paper: #f3ede0;
+  --ledger-paper-edge: #e8dfcb;
+  --ledger-ink: #23201b;
+  --ledger-ink-soft: #6b6355;
+  --ledger-wine: #6e2a35;
+  --ledger-wine-dark: #551f27;
+  --ledger-gold: #a9852e;
+  --ledger-red: #b1443a;
+  --ledger-green: #4f7a5c;
+}
