@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { link } from "svelte-spa-router";
-  import config from "../config.js";
-  import { refreshMenu } from "../data.js";
+  import config from "./config.js";
+  import { refreshMenu } from "./data.js";
 
   // ── Data ───────────────────────────────────────────────────────
   let categories = [];

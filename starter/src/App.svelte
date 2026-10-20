@@ -1,8 +1,7 @@
 <script>
   import Router from "svelte-spa-router";
   import config from "./config.js";
-  import PremiumMenu from "./menus/PremiumMenu.svelte";
-  import StarterMenu from "./menus/StarterMenu.svelte";
+  import StarterMenu from "./StarterMenu.svelte";
   import LoginPage from "./LoginPage.svelte";
   import AdminPage from "./Admin/AdminPage.svelte";
 
